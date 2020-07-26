@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "480861609902",
+    "firebase_url": "https://chat-now-d2f57.firebaseio.com",
+    "project_id": "chat-now-d2f57",
+    "storage_bucket": "chat-now-d2f57.appspot.com" 
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480861609902:android:778d68a665917f9a64723f",
+        "android_client_info": {
+          "package_name": "com.messengingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480861609902-ac9uq1kerqpn7qu32611srb0jq4n3rjr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7P-z09u5748v8TXiyYiyYm_bvlCbKiUQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480861609902-ac9uq1kerqpn7qu32611srb0jq4n3rjr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
