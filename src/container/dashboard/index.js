@@ -7,8 +7,8 @@ import { LogoutUser, UpdateUser } from '../../network'
 import {clearAsyncStorage} from '../../asyncStorage'
 import firebase from '../../firebase/config'
 import {uuid, smallDeviceHeight} from '../../utility/constants'
-import {LOADING_STRAT, LOADING_STOP} from '../../context/actions/type'
-import {Profile, ShowUsers} from '../../components'
+import {LOADING_START, LOADING_STOP} from '../../context/actions/type'
+import {Profile, ShowUsers, StickyHeader} from '../../components'
 import { Store } from '../../context/store'
 import { deviceHeight } from "../../utility/styleHelper/appStyle";
 
@@ -40,7 +40,7 @@ const Dashboard = ({navigation}) => {
     
     useEffect (() => {
         dispatchLoaderAction({
-            type: LOADING_STRAT,
+            type: LOADING_START,
         });
         try {
             firebase.database().ref('users').on('value', (dataSnapShot) => {
@@ -63,7 +63,7 @@ const Dashboard = ({navigation}) => {
                         });
                     }
                 });
-                setUserDetail(currentUser)
+                setUserDetail(currentUser);
                 setAllUsers(users);
                 dispatchLoaderAction({
                     type: LOADING_STOP,
@@ -85,7 +85,6 @@ const Dashboard = ({navigation}) => {
         };
     
         ImagePicker.showImagePicker(options, (response) => {
-          console.log("Response = ", response);
           if (response.didCancel) {
             console.log("User cancelled photo picker");
           } else if (response.error) {
@@ -95,7 +94,7 @@ const Dashboard = ({navigation}) => {
           } else {
             let source = "data:image/jpeg;base64," + response.data;
             dispatchLoaderAction({
-              type: LOADING_START,
+              type: LOADING_START
             });
             UpdateUser(uuid, source)
               .then(() => {
@@ -159,7 +158,11 @@ const Dashboard = ({navigation}) => {
             currentUserId: uuid,
           });
         }
-      };
+    }
+
+    const deleteUser = (userId) => {
+      firebase.database().ref('users/' + userId).remove()
+    }
 
     const getOpacity = () => {
         if (deviceHeight < smallDeviceHeight) {
@@ -170,49 +173,22 @@ const Dashboard = ({navigation}) => {
       };
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: color.BLACK }}>
-            {getScrollPosition > getOpacity() && (
-        <StickyHeader
-          name={name}
-          img={profileImg}
-          onImgTap={() => imgTap(profileImg, name)}
-        />
-      )}
-      {/* ALL USERS */}
-      <FlatList
-        alwaysBounceVertical={false}
-        data={allUsers}
-        keyExtractor={(_, index) => index.toString()}
-        onEditImgTap={() => selectPhotoTapped()}
-        onScroll={(event) =>
-          setScrollPosition(event.nativeEvent.contentOffset.y)
-        }
-        ListHeaderComponent={
-          <View
-            style={{
-              opacity:
-                getScrollPosition < getOpacity()
-                  ? (getOpacity() - getScrollPosition) / 100
-                  : 0,
-            }}
-          >
-            <Profile
-              img={profileImg}
-              onImgTap={() => imgTap(profileImg, name)}
-              onEditImgTap={() => selectPhotoTapped()}
-              name={name}
-            />
-           </View>
-        }
-        renderItem={({ item }) => (
-          <ShowUsers
-            name={item.name}
-            img={item.profileImg}
-            onImgTap={() => imgTap(item.profileImg, item.name)}
-            onNameTap={() => nameTap(item.profileImg, item.name, item.id)}
-          />
-        )}
-      />
+      <SafeAreaView style={{ flex: 1, backgroundColor: color.DASHBRD_DARK_PURPLE }}>
+          {getScrollPosition > getOpacity() && (
+            <StickyHeader name={name} img={profileImg} onImgTap={() => imgTap(profileImg, name)}/>
+          )}
+        <FlatList alwaysBounceVertical={false} data={allUsers} keyExtractor={(_, index) => index.toString()}
+          onEditImgTap={() => selectPhotoTapped()} onScroll={(event) =>setScrollPosition(event.nativeEvent.contentOffset.y)
+          }
+          ListHeaderComponent={
+            <View style={{opacity:getScrollPosition < getOpacity() ? (getOpacity() - getScrollPosition) / 100: 0}}>
+              <Profile img={profileImg} onImgTap={() => imgTap(profileImg, name)} onEditImgTap={() => selectPhotoTapped()} name={name}/>
+            </View>
+          }
+          renderItem={({ item }) => (
+            <ShowUsers name={item.name} img={item.profileImg} onImgTap={() => imgTap(item.profileImg, item.name)} 
+              onNameTap={() => nameTap(item.profileImg, item.name, item.id)} onDeleteUser={()=> deleteUser(item.id)}/>
+          )}/>
     </SafeAreaView>
     )
 }

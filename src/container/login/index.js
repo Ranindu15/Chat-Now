@@ -7,6 +7,7 @@ import { LOADING_START, LOADING_STOP } from '../../context/actions/type'
 import { LoginReq } from '../../network'
 import { setAsyncStorage, keys } from '../../asyncStorage'
 import { setUniqueValue, keyboardVerticalOffset } from '../../utility/constants'
+import { Button } from 'native-base'
 
 const Login = ({navigation}) =>  {
     
@@ -22,6 +23,10 @@ const Login = ({navigation}) =>  {
 
     const handleOnChange = (name, value) =>{
         setCredential({ ...credential, [name]:value });
+    };
+
+    const setInitialState = () => {
+      setCredential({ email: "", password: "" });
     };
 
     const OnLoginPress = () => {
@@ -61,16 +66,16 @@ const Login = ({navigation}) =>  {
             toggleLogo(true);
         },200);
     }
-
+ 
     return (
         <KeyboardAvoidingView
         keyboardVerticalOffset={keyboardVerticalOffset}
         behavior={Platform.OS == "ios" ? "padding" : "height"}
-        style={[globalStyle.flex1, { backgroundColor: color.BLACK }]}
+        style={[globalStyle.flex1, { backgroundColor: color.DARK_PURPLE }]}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <SafeAreaView
-            style={[globalStyle.flex1, { backgroundColor: color.BLACK }]}
+            style={[globalStyle.flex1, { backgroundColor: color.DARK_PURPLE }]}
           >
             {showLogo && (
               <View style={[globalStyle.containerCentered]}>
@@ -95,18 +100,9 @@ const Login = ({navigation}) =>  {
               />
   
               <RoundCornerButton title="Login" onPress={() => OnLoginPress()} />
-              <Text
-                style={{
-                  fontSize: 28,
-                  fontWeight: "bold",
-                  color: color.LIGHT_GREEN,
-                }}
-                onPress={() => {
-                  // setInitialState();
-                  navigation.replace("Signup");
-                }}
-              >
-                Sign Up
+              <Text style={{fontSize: 28,fontWeight: "bold", color: color.LOGIN_SIGNUP_PURPLE}}
+                onPress={() => {setInitialState();
+                navigation.replace("Signup");}} > Sign-Up
               </Text>
             </View>
           </SafeAreaView>

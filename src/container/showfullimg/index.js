@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, Fragment } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import {Image, View, Text, StyleSheet } from 'react-native'
 import { globalStyle, color } from '../../utility';
 
 const ShowFullImg = ({route, navigation}) => {

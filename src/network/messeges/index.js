@@ -2,13 +2,12 @@ import firebase from '../../firebase/config'
 
 export const senderMsg = async (msgValue, currentUserid, guestUserId,img) => {
     try{
-        return await firebase.database().ref('messeges/' + currentUserid)
-        .child(guestUserId)
-        .push({
-            messeges:{
+        return await firebase.database().ref('messeges/'+ currentUserid)
+        .child(guestUserId).push({
+            messege: {
                 sender: currentUserid,
-                reciever:guestUserId,
-                msg:msgValue,
+                reciever: guestUserId,
+                msg : msgValue,
                 img: img
             }
         })
@@ -18,12 +17,12 @@ export const senderMsg = async (msgValue, currentUserid, guestUserId,img) => {
     }
 }
 
-export const recieverMsg = async (email, password) => {
+export const recieverMsg = async (msgValue, currentUserid, guestUserId,img) => {
     try{
-        return await firebase.database().ref('messeges/' + currentUserid)
-        .child(guestUserId)
+        return await firebase.database().ref('messeges/' + guestUserId)
+        .child(currentUserid)
         .push({
-            messeges:{
+            messege:{
                 sender: currentUserid,
                 reciever:guestUserId,
                 msg:msgValue,

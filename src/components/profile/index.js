@@ -1,9 +1,8 @@
 import React from "react";
-import { Image, View, Text } from "react-native";
+import { Image,TouchableOpacity, View, Text } from "react-native";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import styles from "./styles";
 import { globalStyle, color } from "../../utility";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default ({ img, name, onImgTap, onEditImgTap }) => (
   <View style={[globalStyle.sectionCentered, styles.container]}>
@@ -12,13 +11,7 @@ export default ({ img, name, onImgTap, onEditImgTap }) => (
         {img ? (
           <Image source={{ uri: img }} style={styles.img} resizeMode="cover" />
         ) : (
-          <View
-            style={[
-              globalStyle.sectionCentered,
-              styles.img,
-              { backgroundColor: color.DARK_GRAY },
-            ]}
-          >
+          <View style={[ globalStyle.sectionCentered, styles.img,{ backgroundColor: color.SLOW_WHITE }]}>
             <Text style={styles.name}>{name.charAt(0)}</Text>
           </View>
         )}

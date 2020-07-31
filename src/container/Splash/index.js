@@ -4,6 +4,7 @@ import { globalStyle } from '../../utility'
 import {color} from '../../utility'
 import { Logo } from '../../components'
 import { getAsyncStorage, keys } from '../../asyncStorage'
+import { setUniqueValue } from '../../utility/constants'
 
 const Splash = ({navigation}) => {
     useEffect(()=>{
@@ -11,7 +12,8 @@ const Splash = ({navigation}) => {
             getAsyncStorage(keys.uuid)
             .then((uuid) =>{
                 if(uuid){
-                    navigation.replace('Dashboard');
+                    setUniqueValue(uuid);
+                    navigation.navigate('Dashboard');
                 }else {
                     navigation.replace('Login');
                 }
@@ -24,7 +26,7 @@ const Splash = ({navigation}) => {
         return () => clearTimeout(redirect);
     }, [navigation])
         return (
-            <View style={[globalStyle.containerCentered, {backgroundColor:color.BLACK}]}>
+            <View style={[globalStyle.containerCentered, {backgroundColor:color.DARK_PURPLE}]}>
                 <Logo />
             </View>
         )

@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 import { color } from "../../utility";
-
+ 
 export default StyleSheet.create({
   cardStyle: {
-    backgroundColor: color.SEMI_TRANSPARENT,
+    backgroundColor: color.DASHBOARD_FIELD_PURPLE,
     borderBottomWidth: 1,
     borderColor: color.SILVER,
   },

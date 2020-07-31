@@ -8,7 +8,7 @@ export default StyleSheet.create({
     borderColor: color.SILVER,
   },
   cardItemStyle: {
-    backgroundColor: color.DARK_LIME_GREEN,
+    backgroundColor: color.STICKY_PURPLE,
   },
 
   logoContainer: {

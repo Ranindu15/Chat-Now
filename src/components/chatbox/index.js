@@ -1,11 +1,10 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Card, CardItem } from "native-base";
 import { deviceWidth } from "../../utility/styleHelper/appStyle";
 import { uuid } from "../../utility/constants";
 import styles from "./styles";
 import { color } from "../../utility";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const ChatBox = ({ userId, msg, img, onImgTap }) => {
   let isCurrentUser = userId === uuid ? true : false;

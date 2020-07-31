@@ -58,7 +58,8 @@ const Signup = ({navigation}) =>  {
                     setAsyncStorage(keys.uuid, uid);
                     setUniqueValue(uid);
                     dispatchLoaderAction({type: LOADING_STOP});
-                    navigation.navigate('Dashboard');
+                    setInitialState();
+                    navigation.navigate('Login');
                 })
                 .catch((err) => {
                     dispatchLoaderAction({
@@ -91,10 +92,10 @@ const Signup = ({navigation}) =>  {
         <KeyboardAvoidingView
       keyboardVerticalOffset={keyboardVerticalOffset}
       behavior={Platform.OS == "ios" ? "padding" : "height"}
-      style={[globalStyle.flex1, { backgroundColor: color.BLACK }]}
+      style={[globalStyle.flex1, { backgroundColor: color.DARK_PURPLE }]}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{ flex: 1, backgroundColor: color.BLACK }}>
+        <View style={{ flex: 1, backgroundColor: color.DARK_PURPLE }}>
           {showLogo && (
             <View style={[globalStyle.containerCentered]}>
               <Logo />
@@ -141,7 +142,7 @@ const Signup = ({navigation}) =>  {
               style={{
                 fontSize: 28,
                 fontWeight: "bold",
-                color: color.LIGHT_GREEN,
+                color: color.LOGIN_SIGNUP_PURPLE,
               }}
               onPress={() => {
                 setInitialState();

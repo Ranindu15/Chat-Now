@@ -10,6 +10,7 @@ const getFieldDimesions = () => {
   if (deviceHeight > smallDeviceHeight) {
     return {
       fieldHeight: 50,
+      fieldBorderRadius:8,
       fieldMarginVertical: 10,
       btnMarginVertical: 20,
       btnBorderRadius: 10,
@@ -24,10 +25,10 @@ const getFieldDimesions = () => {
       btnHeight: 40,
     };
   }
-};
-export const fieldBgColor = color.DARK_GRAY;
+}; 
+export const fieldBgColor = color.BTN_PURPLE;
 export const fieldTextColor = color.WHITE;
-export const logoBgColor = color.DARK_GRAY;
+export const logoBgColor = color.SLOW_WHITE; 
 export const fieldHeight = getFieldDimesions().fieldHeight;
 export const fieldMarginVertical = getFieldDimesions().fieldMarginVertical;
 export const btnMarginVertical = getFieldDimesions().btnMarginVertical;
