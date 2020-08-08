@@ -1,13 +1,13 @@
 # Chat-Now
 React native messaging app
 
-#Description
+##Description
 
  This app is like WhatsApp. This is an android app that allows its users to send text messages, share images using gallery and share with their friends. Users register with their email.
  
  
-#Tools and APIs Used
-
+##Tools and APIs Used
+````
   Android Studio
   
   Firebase Authentication
@@ -15,9 +15,9 @@ React native messaging app
   Firebase Realtime Database
   
   Async storage
+````  
   
-  
- #Functionalities
+##Functionalities
  
 This app uses Firebase email Authentication which verifies a user’s email, password, username. The user is then authenticated to use the app. Profile picture is stored in Firebase database.
 
@@ -26,7 +26,7 @@ The app uses Firebase Realtime Database for text messaging and images. In this w
 User can also change his/her profile picture and delete account.
 
 
-#How to Run
+##How to Run
 
 An apk file app-relese.apk is provided which can be installed on an Android Phone.
 
